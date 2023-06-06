@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/myblog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/myblog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/myblog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/myblog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/myblog/css/main.css">
+
+
+<link rel="stylesheet" href="/myblog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"35000ft.github.io","root":"/myblog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="大数据技术 厦门大学 林子雨教学大纲第1章 大数据概述 介绍大数据的基本概念和应用领域，并阐述大数据、云计算和物联网 2 的相互关系 第2章 大数据处理架构Hadoop 介绍大数据处理架构Hadoop 第3章 分布式文件系统HDFS 分布式文件系统HDFS的基本原理和使用方法  第4章 分布式数据库HBase 分布式数据库HBase的基本原理和使用方法  第5章 NoSQL数据库 NoSQL数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据技术笔记&#x2F;Big Data Note">
+<meta property="og:url" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="大数据技术 厦门大学 林子雨教学大纲第1章 大数据概述 介绍大数据的基本概念和应用领域，并阐述大数据、云计算和物联网 2 的相互关系 第2章 大数据处理架构Hadoop 介绍大数据处理架构Hadoop 第3章 分布式文件系统HDFS 分布式文件系统HDFS的基本原理和使用方法  第4章 分布式数据库HBase 分布式数据库HBase的基本原理和使用方法  第5章 NoSQL数据库 NoSQL数据库">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/1.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/2.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/3.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/4.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/5.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/6.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/7.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/8.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/9.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/10.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/11.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/12.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/13.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/14.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/15.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/16.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/17.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/18.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/19.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/20.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/21.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/22.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/23.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/24.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/25.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/26.png">
+<meta property="og:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/27.png">
+<meta property="article:published_time" content="2023-06-06T09:12:59.000Z">
+<meta property="article:modified_time" content="2023-06-06T09:19:02.746Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/1.png">
+
+<link rel="canonical" href="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>大数据技术笔记/Big Data Note | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/myblog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/myblog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/myblog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://35000ft.github.io/myblog/2023/06/06/bigdata-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/myblog/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大数据技术笔记/Big Data Note
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-06-06 17:12:59 / Modified: 17:19:02" itemprop="dateCreated datePublished" datetime="2023-06-06T17:12:59+08:00">2023-06-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="大数据技术-厦门大学-林子雨"><a href="#大数据技术-厦门大学-林子雨" class="headerlink" title="大数据技术 厦门大学 林子雨"></a>大数据技术 厦门大学 林子雨</h1><h2 id="教学大纲"><a href="#教学大纲" class="headerlink" title="教学大纲"></a>教学大纲</h2><p>第1章 大数据概述 介绍大数据的基本概念和应用领域，并阐述大数据、云计算和物联网 2 的相互关系</p>
+<p>第2章 大数据处理架构Hadoop 介绍大数据处理架构Hadoop</p>
+<p>第3章 分布式文件系统HDFS 分布式文件系统HDFS的基本原理和使用方法 </p>
+<p>第4章 分布式数据库HBase 分布式数据库HBase的基本原理和使用方法 </p>
+<p>第5章 NoSQL数据库 NoSQL数据库的概念和基本原理 </p>
+<p>第6章 云数据库 云数据库的概念和基本原理 </p>
+<p>第7章 MapReduce 分布式并行编程模型MapReduce原理和使用方法 </p>
+<p>第8章 Hadoop架构再探讨 Hadoop技术的发展演变过程、YARN、HDFS Federation </p>
+<p>第9章 数据仓库Hive 数据仓库Hive的概念、原理和安装使用方法 </p>
+<p>第10章 Spark Spark原理与基础编程 </p>
+<p>第11章 流计算 流计算概念和原理、Storm </p>
+<p>第12章 Flink 流处理框架Flink的应用场景、体系架构和编程模型 </p>
+<p>第13章 图计算 图计算概念和原理、Pregel </p>
+<p>第14章 数据可视化 数据可视化概念、代表性技术和软件</p>
+<p>第15、16和17章 大数据在不同 领域的应用 大数据在互联网领域的典型应用：推荐系统，以及在其他领域的典型 2 应用</p>
+<span id="more"></span>>
+<h2 id="第1章-大数据概述"><a href="#第1章-大数据概述" class="headerlink" title="第1章 大数据概述"></a>第1章 大数据概述</h2><h3 id="1-1-第三次信息化浪潮"><a href="#1-1-第三次信息化浪潮" class="headerlink" title="1.1 第三次信息化浪潮"></a>1.1 第三次信息化浪潮</h3><p><img src="/myblog/2023/06/06/bigdata-note/1.png"></p>
+<h3 id="1-2-大数据的特征"><a href="#1-2-大数据的特征" class="headerlink" title="1.2  大数据的特征"></a>1.2  大数据的特征</h3><p>（1）大体量（Volume）。需要采集、处理、 传输的数据容量大，数据量可从数百TB到数百 PB甚至EB的规模。 </p>
+<p>（2）多样化（Variety）。包括各种格式和形 态的数据，数据结构种类多，复杂性高。 </p>
+<p>（3）快速性（Velocity）。很多大数据需要 在一定时间限度下得到及时处理，处理数据的 效率决定企业的生命。</p>
+<p>（4）准确性（Veracity）。大数据处理的结 果要保证一定的准确性。 </p>
+<p>（5）价值（Value）。大数据包含很多深度的 价值，通过强大的机器学习和高级分析对数据 进行“提纯”，能够带来巨大商业价值。</p>
+<h3 id="1-3-大数据关键技术"><a href="#1-3-大数据关键技术" class="headerlink" title="1.3  大数据关键技术"></a>1.3  大数据关键技术</h3><p><strong>分布式存储和分布式处理</strong></p>
+<p><strong>分布式存储：</strong></p>
+<p>​    分布式数据库：BigTable\HBase</p>
+<p>​    分布式文件系统：GFS\HDFS</p>
+<p><strong>分布式处理：MapReduce</strong></p>
+<h3 id="1-4-大数据与云计算、物联网的关系"><a href="#1-4-大数据与云计算、物联网的关系" class="headerlink" title="1.4 大数据与云计算、物联网的关系"></a>1.4 大数据与云计算、物联网的关系</h3><p>云计算、大数据和物联网代表了IT领域最新的技术发展趋势，三者既有区别又有联系。</p>
+<p><strong>区别</strong>：</p>
+<p>（1）大数据侧重于对海量数据的存储、处理和分析，从海量数据中发现假值，服务于生产和生活</p>
+<p>（2）云计算旨在整合和优化各种IT资源，并通过网络以服务的方式廉价地提供给用户</p>
+<p>（3）物联网的发展目标是h实现”物物相连“，应用创新是物联网发展的核心</p>
+<p><strong>联系</strong>：</p>
+<p>（1）云计算为大数据提供了技术基础，大数据为云计算提供了用武之地</p>
+<p>（2）物联网是大数据的重要来源，大数据为物联网数据分析提供支撑</p>
+<p>（3）云计算为物联网提供了海量数据存储能力，物联网为云计算通过了广阔的应用空间</p>
+<h3 id="1-5-大数据处理的基本流程"><a href="#1-5-大数据处理的基本流程" class="headerlink" title="1.5 大数据处理的基本流程"></a>1.5 大数据处理的基本流程</h3><p><img src="/myblog/2023/06/06/bigdata-note/2.png" alt="大数据处理的基本流程">x</p>
+<p>从数据分析全流程的角度，大数据技术主要包括<strong>数据采集与预处理、数据存储和管理、数据处理与分析、数据呈现</strong>等几个层面的内容。</p>
+<h2 id="第2章-Hadoop"><a href="#第2章-Hadoop" class="headerlink" title="第2章 Hadoop"></a>第2章 Hadoop</h2><h3 id="2-1-Hadoop简介"><a href="#2-1-Hadoop简介" class="headerlink" title="2.1 Hadoop简介"></a>2.1 Hadoop简介</h3><ul>
+<li>Hadoop是Apache旗下的一个<strong>开源分布式计算平台</strong>，为用户提供了系统底层细节透明的<strong>分布式基础架构</strong> </li>
+<li>Hadoop是基于Java语言开发的，具有很好的跨平台特性，并且可以部署在廉价的计算机集群中 </li>
+<li>Hadoop的核心是分布式文件系统HDFS和MapReduce </li>
+<li>Hadoop被公认为行业大数据标准开源软件，在分布式环境下提供了海量数据的处理能力 </li>
+<li>几乎所有主流厂商都围绕Hadoop提供开发工具、开源软件、商业化工具和技术服务，</li>
+</ul>
+<h3 id="2-2-Hadoop项目结构"><a href="#2-2-Hadoop项目结构" class="headerlink" title="2.2 Hadoop项目结构"></a>2.2 Hadoop项目结构</h3><p><img src="/myblog/2023/06/06/bigdata-note/3.png" alt="Hadoop项目结构"></p>
+<h2 id="第3章-※HDFS"><a href="#第3章-※HDFS" class="headerlink" title="第3章 ※HDFS"></a>第3章 ※HDFS</h2><h3 id="3-1-分布式文件系统的结构"><a href="#3-1-分布式文件系统的结构" class="headerlink" title="3.1 分布式文件系统的结构"></a>3.1 分布式文件系统的结构</h3><p>分布式文件系统在物理结构上是由计算机集群中的<strong>多个节点</strong>构成的。</p>
+<p>这些节点分为两类，一类叫“主节点”(Master Node)或者也被称为“<strong>名称结点</strong>”(NameNode)，主要负责文件和目录的创建、删除和重命名等，同时管理数据节点和文件块的映射关系。</p>
+<p>另一类叫“从节点”（Slave Node）或者也被称为“<strong>数据节点</strong>”(DataNode)，负责数据的存储和读取，在存储时由名称节点分配存储位置，然后由客户端把数据写入相应数据节点。在读取时客户端从名称节点获得数据节点和文件块的映射关系，然后就可以到相应的位置访问文件块。</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/4.png" alt="大规模文件系统的整体结构"></p>
+<h3 id="3-2-HDFS简介"><a href="#3-2-HDFS简介" class="headerlink" title="3.2 HDFS简介"></a>3.2 HDFS简介</h3><h4 id="3-2-1-HDFS需要实现的目标"><a href="#3-2-1-HDFS需要实现的目标" class="headerlink" title="3.2.1 HDFS需要实现的目标"></a>3.2.1 HDFS需要实现的目标</h4><ul>
+<li>兼容廉价的硬件设备</li>
+<li>流数据读写</li>
+<li>大数据集 </li>
+<li>简单的文件模型 </li>
+<li>强大的跨平台兼容性</li>
+</ul>
+<h4 id="3-2-2-HDFS的缺点"><a href="#3-2-2-HDFS的缺点" class="headerlink" title="3.2.2 HDFS的缺点"></a>3.2.2 HDFS的缺点</h4><ul>
+<li>不适合低延迟数据访问 </li>
+<li>无法高效存储大量小文件 </li>
+<li>不支持多用户写入及任意修改文件</li>
+</ul>
+<h3 id="3-3-HDFS的块"><a href="#3-3-HDFS的块" class="headerlink" title="3.3 HDFS的块"></a>3.3 HDFS的块</h3><p><strong>HDFS1.0前</strong>一个块的大小为<strong>64MB</strong>，1.0后为128MB</p>
+<p>一个文件被分成多个块，以块作为存储单位块的大小远远大于普通文件系统，可以最小化寻址开销，使磁盘传输数据的时间可以明显大于定位这个块所需的时间。</p>
+<p>HDFS<strong>采用抽象的块的好处</strong>：</p>
+<ul>
+<li>支持大规模文件存储：一个大文件可以被分拆成若干个文件块，不同的文件块可被分发到不同的节点上，因此文件大小不会受到单个节点的存储容量的限制</li>
+<li>简化系统设计：简化了存储管理，文件块大小是固定的，容易计算出一个节点存储的文件块数量；方便了元数据的管理，可以由其他系统负责管理元数据</li>
+<li>适合数据备份：每个文件块都可以冗余存储到多个节点上，大大 提高了系统的容错性和可用性</li>
+</ul>
+<h3 id="3-4-※名称节点和数据节点"><a href="#3-4-※名称节点和数据节点" class="headerlink" title="3.4 ※名称节点和数据节点"></a>3.4 ※名称节点和数据节点</h3><p><img src="/myblog/2023/06/06/bigdata-note/5.png"></p>
+<h4 id="3-4-1-名称节点的结构"><a href="#3-4-1-名称节点的结构" class="headerlink" title="3.4.1 名称节点的结构"></a>3.4.1 名称节点的结构</h4><p>名称节点负责管理分布式文件系统的命名空间 （Namespace），保存了两个核心的数据结构，即<strong>FsImage和EditLog</strong> </p>
+<ul>
+<li>FsImage用于<strong>维护文件系统树</strong>以及文件树中所有的文件和文件夹的<strong>元数据</strong> </li>
+<li>操作日志文件EditLog中<strong>记录了所有针对文件的创建、删除、重命名</strong>等操作 </li>
+<li>名称节点记录了每个文件中<strong>各个块所在的数据节点的位置信息</strong></li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/6.png" alt="名称节点的数据结构"></p>
+<h3 id="3-4-2-名称节点的启动"><a href="#3-4-2-名称节点的启动" class="headerlink" title="3.4.2 名称节点的启动"></a>3.4.2 名称节点的启动</h3><ul>
+<li>在名称节点启动的时候，它会将FsImage文件中的内容加载到内存中，之后再执行EditLog文件中的各项操作，使得内存中的元数据和实际的同步 </li>
+<li>一旦在内存中成功建立文件系统元数据的映射，则创建一个新的 FsImage文件和一个空的EditLog文件</li>
+<li>名称节点起来之后，HDFS中的<strong>更新操作</strong>会重新写到EditLog文件中 ，因为FsImage文件一般都很大，如果所有的更新操作都往FsImage文件中添加，这样会导致系统运行的十分缓慢 。每次执行写操作之后，且在向客户端发送成功代码之前，edits文件都需要同步更新</li>
+</ul>
+<h3 id="3-4-3-第二名称节点"><a href="#3-4-3-第二名称节点" class="headerlink" title="3.4.3 第二名称节点"></a>3.4.3 第二名称节点</h3><p>在名称节点运行期间，HDFS的所有更新操作都是直接写到EditLog中，EditLog文件将会变得很大</p>
+<p>当EditLog文件非常大的时候，会导致名称节点启动操作非常慢，而在这段时间内HDFS系统处于安全模式，一直无法对外提供写操作，影响了用户的使用</p>
+<p><strong>第二名称节点：解决名称节点运行期间EditLog不断变大的问题</strong></p>
+<p>第二名称节点是HDFS架构中的一个组成部分，它是<strong>用来保存名称节点中对HDFS元数据信息的备份</strong>，并<strong>减少名称节点重启的时间</strong>。 一般单独运行在一台机器上</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/7.png"></p>
+<p>SecondaryNameNode的工作情况： </p>
+<ul>
+<li>（1）SecondaryNameNode会定期和NameNode通信，请求其停止使用EditLog文件，暂时将新的写操作写到一个新的文件edit.new上来</li>
+<li>（2）SecondaryNameNode通过HTTP GET方式从NameNode上获取到FsImage和EditLog文件，并下载到本地的相应目录下</li>
+<li>（3）SecondaryNameNode将下载下来的FsImage载入到内存，然后一条一条地执行EditLog文件中的各项更新操作，使内存中的FsImage保持最新；这个过程就是EditLog和FsImage文件合并</li>
+<li>（4）通过post方式将新的 FsImage文件发送到NameNode节点上 </li>
+<li>（5）NameNode将从SecondaryNameNode接收到的新的 FsImage替换旧的FsImage文件，同时将 edit.new替换EditLog文件</li>
+</ul>
+<p>这样EditLog就变小了</p>
+<h4 id="3-4-4-数据节点"><a href="#3-4-4-数据节点" class="headerlink" title="3.4.4 数据节点"></a>3.4.4 数据节点</h4><ul>
+<li>数据节点是分布式文件系统HDFS的工作节点，负责数据的存储和读取，会根据客户端或者是名称节点的调度来进行数据的存储和检索，并且向名称节点定期发送自己所存储的块的列表 </li>
+<li>每个数据节点会定期向名称节点<strong>发送“心跳”信息</strong>，向名称节点<strong>报告自己的状态来维护数据映射信息</strong></li>
+<li>每个数据节点中的数据会被保存在<strong>各自节点的本地Linux文件系统中</strong></li>
+</ul>
+<h2 id="第4章-HBase"><a href="#第4章-HBase" class="headerlink" title="第4章 HBase"></a>第4章 HBase</h2><h3 id="4-1HBase数据模型概述"><a href="#4-1HBase数据模型概述" class="headerlink" title="4.1HBase数据模型概述"></a>4.1HBase数据模型概述</h3><ul>
+<li>HBase是一个稀疏、多维度、持久化存储的映射表，采用<strong>行键、列族、列限定符和时间戳</strong>进行索引； </li>
+<li>每个值是一个未经解释的字符串，没有数据类型； </li>
+<li>用户在表中存储数据，每一行都有一个唯一一个可排序的行键和任意多的列； </li>
+<li>表在水平方向由一个或者多个列族组成，一个列族中可以包含任意多个列，同一个列族里面的数据存储在一起； </li>
+<li>列族支持动态扩展，可以很轻松地添加一个列族或列，无需预先定义 列的数量以及类型，所有列均以字符串形式存储，用户需要自行进行 数据类型转换； </li>
+<li>HBase中执行更新操作时，并不会删除数据旧的版本，而是生成一个 新的版本，旧有的版本仍然保留（这是和HDFS只允许追加不允许修 改的特性相关的）。</li>
+</ul>
+<h3 id="4-2-Region-0-96-0之前"><a href="#4-2-Region-0-96-0之前" class="headerlink" title="4.2 Region(0.96.0之前)"></a>4.2 Region(0.96.0之前)</h3><p><strong>概念</strong>：对于每个Hbase表来说，表中包含的行的数量可能非常庞大，无法存储在一台机器上，因此需要根据行键的值对表中的行进行分区。每个行区间构成一个分区，称为Region。</p>
+<p><strong>定位</strong>：</p>
+<p>当HBase表很大时， .META.表也会被分裂成多个Region •根数据表，又名-ROOT-表，记录所有元数据的具体位置</p>
+<p><strong>HBase的三层结构</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一层</td>
+<td>Zookeeper文件</td>
+<td>记录了-ROOT-表的位置</td>
+</tr>
+<tr>
+<td>第二层</td>
+<td>-ROOT-表</td>
+<td>记录了.META.表的Region位置信息 -ROOT-表只能有一个Region。通过-ROOT表，就可以访问.META.表中的数据</td>
+</tr>
+<tr>
+<td>第三层</td>
+<td>元数据表，又名.META.表</td>
+<td>记录了用户数据表的Region位置信息， .META.表可以有多个Region，保存了HBase 中所有用户数据表的Region位置信息</td>
+</tr>
+</tbody></table>
+<p><img src="/myblog/2023/06/06/bigdata-note/8.png" alt="HBase的三层结构"></p>
+<p>查询步骤：</p>
+<ol>
+<li>第一步：用户通过查找zk(ZooKeeper)的 /hbase/root-regionserver 节点来知道-ROOT-表的 RegionServer位置。</li>
+<li>第二步：访问-ROOT-表， 查找所需要的数据表的元 数据信息存在哪个.META. 表上，这个.META.表在哪个RegionServer上。 </li>
+<li>第三步：访问.META.表来 看你要查询的行键在什么 Region范围里面。 </li>
+<li>第四步：连接具体的数据 所在的RegionServer，这 个一步才开始在很正的查询数据</li>
+</ol>
+<h3 id="4-3-HLog工作原理"><a href="#4-3-HLog工作原理" class="headerlink" title="4.3 HLog工作原理"></a>4.3 HLog工作原理</h3><p><strong>HLog介绍：</strong></p>
+<ul>
+<li>分布式环境必须要考虑系统出错。HBase采用HLog保证系统恢复； </li>
+<li>HBase系统为每个Region服务器配置了一个HLog文件， 它是一种预写式日志； </li>
+<li>用户更新数据必须首先写入日志后，才能写入MemStore 缓存，并且，直到MemStore缓存内容对应的日志已经写入磁盘，该缓存内容才能被刷写到磁盘。</li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/9.png"></p>
+<p><strong>HLog工作原理：</strong></p>
+<ul>
+<li>Zookeeper会实时监测（<strong>心跳</strong>）每个Region服务器的状态， 当某个Region服务器发生故障时，Zookeeper会通知Master；</li>
+<li>Master首先会处理该故障Region服务器上面遗留的HLog文件，这个遗留的HLog文件中包含了来自多个Region对象的日志记录；</li>
+<li>系统会根据每条日志记录所属的Region对象对HLog数据进行拆分， 分别放到相应Region对象的目录下，然后，再将失效的Region重新分配到可用的Region服务器中，并把与该Region对象相关的HLog日志记录也发送给相应的Region服务器 </li>
+<li>Region服务器领取到分配给自己的Region对象以及与之相关的HLog日志记录以后，会重新做一遍日志记录中的各种操作，把日志记录中的数据写入到MemStore缓存中，然后，刷新到磁盘的StoreFile文件中，完成数据恢复 </li>
+</ul>
+<p>多个Region对象共用日志优点：提高对表的写操作性能；缺点：恢复时需要拆分日志</p>
+<h2 id="第5、6章-NoSQL和云数据库"><a href="#第5、6章-NoSQL和云数据库" class="headerlink" title="第5、6章 NoSQL和云数据库"></a>第5、6章 NoSQL和云数据库</h2><h3 id="5-1-NoSQL的四大类型"><a href="#5-1-NoSQL的四大类型" class="headerlink" title="5.1 NoSQL的四大类型"></a>5.1 NoSQL的四大类型</h3><p>典型的NoSQL数 据库通常包括<strong>键值数据库、列族数据库、文档数据库和图数据库。</strong></p>
+<h3 id="5-2-NoSQL的三大基石"><a href="#5-2-NoSQL的三大基石" class="headerlink" title="5.2 NoSQL的三大基石"></a>5.2 NoSQL的三大基石</h3><p>NoSQL的三大基石包括<strong>CAP、BASE和最终一致性</strong></p>
+<h3 id="5-2-1-CAP"><a href="#5-2-1-CAP" class="headerlink" title="5.2.1 CAP"></a>5.2.1 CAP</h3><p>CAP理论告诉我们，一个分布式系统<strong>不可能同时满足一致性(C)、可用性(A) 和分区容忍性(P)这三个需求</strong>，最多只能同时满足其中两个。</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/10.png" alt="CAP理论"></p>
+<p>当处理CAP的问题时，可以有几个明显的选择： </p>
+<ol>
+<li>CA：也就是强调一致性（C）和可用性（A），放弃分区容忍性（P），最 简单的做法是把所有与事务相关的内容都放到同一台机器上。很显然，这种 做法会严重影响系统的可扩展性。传统的关系数据库（MySQL、SQL Server 和PostgreSQL），都采用了这种设计原则，因此，扩展性都比较差； </li>
+<li>CP：也就是强调一致性（C）和分区容忍性（P），放弃可用性（A），当 出现网络分区的情况时，受影响的服务需要等待数据一致，因此在等待期间 就无法对外提供服务； </li>
+<li>AP：也就是强调可用性（A）和分区容忍性（P），放弃一致性（C），使 用网络分区，无论什么情况数据访问一直开放。这样可能出现副本不一致的 问题，即从不同节点取到的相同数据的版本不同</li>
+</ol>
+<h3 id="5-2-2-BASE"><a href="#5-2-2-BASE" class="headerlink" title="5.2.2 BASE"></a>5.2.2 BASE</h3><p>BASE的基本含义是<strong>基本可用（Basically Availble）、软状态（Softstate）和最终一致性（Eventual consistency）</strong></p>
+<ul>
+<li>**基本可用:**是指一个分布式系统的一部分发生问题变得不可用时，其他部分仍然可以正常使用，也就是允许部分分区失败的情形出现</li>
+<li><strong>软状态:</strong> “软状态”是与“硬状态”相对应的一种提法。数据库保存的数据是“硬状态”时，可以保证数据一致性， 即保证数据一直是正确的。“软状态”是指状态可以有一段时间不同步，容忍一定的滞后性</li>
+<li><strong>最终一致性:</strong> 一致性的类型包括强一致性和弱一致性。对于强一致性而言，当执行完一次更新操作后，后续的其他读操作就可以保证读到更新后的最新数据；反之就是弱一致性。最终一致性是弱一致性的一种特例，允许后续的访问操作可以暂时读不到更新后的数据，但是经过一段时间之后，必须最终读到更新后的数据。 </li>
+</ul>
+<h3 id="6-1-云数据库的概念和特性"><a href="#6-1-云数据库的概念和特性" class="headerlink" title="6.1 云数据库的概念和特性"></a>6.1 云数据库的概念和特性</h3><p><strong>概念：</strong>云数据库就是部署在云计算环境中的虚拟化数据库。</p>
+<p><strong>特性</strong>：动态可扩展、高可用性、较低的使用代价、易用性、高性能、免维护、安全</p>
+<h3 id="6-1-云数据库和其它数据库的关系"><a href="#6-1-云数据库和其它数据库的关系" class="headerlink" title="6.1 云数据库和其它数据库的关系"></a>6.1 云数据库和其它数据库的关系</h3><ul>
+<li>从数据模型的角度来说，云数据库并非一种全新的数据库技术，而只是以服 务的方式提供数据库功能。 </li>
+<li>云数据库并没有专属于自己的数据模型，云数据库所采用的数据模型可以是关系数据库所使用的关系模型，也可以是NoSQL数据库所使用的非关系模型 </li>
+<li>同一个公司也可能提供采用不同数据模型的多种云数据库服务</li>
+</ul>
+<h2 id="第7章-※MapReduce"><a href="#第7章-※MapReduce" class="headerlink" title="第7章 ※MapReduce"></a>第7章 ※MapReduce</h2><h3 id="7-1-分布式并行编程"><a href="#7-1-分布式并行编程" class="headerlink" title="7.1 分布式并行编程"></a>7.1 分布式并行编程</h3><ul>
+<li>“摩尔定律”， CPU性能大约每隔18个月翻一番； </li>
+<li>从2005年开始摩尔定律逐渐失效 ，需要处理的数据量快速增加，人们开始借助于分布式并行编程来提高程序性能； </li>
+<li>分布式程序运行在大规模计算机集群上，可以并行执行大规模数据处理任务，从而获得海量的计算能力； </li>
+<li>谷歌公司最先提出了分布式并行编程模型MapReduce， Hadoop MapReduce是它的开源实现，后者比前者使用门槛低很多 。</li>
+</ul>
+<h3 id="7-2-MapReduce模型简介"><a href="#7-2-MapReduce模型简介" class="headerlink" title="7.2 MapReduce模型简介"></a>7.2 MapReduce模型简介</h3><ul>
+<li>MapReduce将复杂的、运行于大规模集群上的并行计算过程高度地抽象到了两个函数：Map和Reduce； </li>
+<li>编程容易，不需要掌握分布式并行编程细节，也可以很容易把自己的程序运行在分布式系统上，完成海量数据的计算； </li>
+<li>MapReduce采用“分而治之”策略，一个存储在分布式文件系统中的大规模数 据集，会被切分成许多独立的分片（split），这些分片可以被多个Map任务并行 处理； </li>
+<li>Map负责“分”，即把复杂的任务分解为若干个“简单的任务”来并行处理。可以 进行拆分的前提是这些小任务可以并行计算，彼此间几乎没有依赖关系。 Reduce 负责“合”，即对map阶段的结果进行全局汇总； </li>
+<li>MapReduce设计的一个理念就是“计算向数据靠拢”，而不是“数据向计算靠拢”，因为，移动数据需要大量的网络传输开销； </li>
+<li>MapReduce框架采用了Master/Slave架构，包括一个Master和若干个Slave。Master上运行JobTracker，Slave上运行TaskTracker ； </li>
+<li>Hadoop框架是用Java实现的，但是，MapReduce应用程序则不一定要用Java来写</li>
+</ul>
+<h3 id="7-3-MapReduce的体系结构"><a href="#7-3-MapReduce的体系结构" class="headerlink" title="7.3 MapReduce的体系结构"></a>7.3 MapReduce的体系结构</h3><p>MapReduce体系结构主要由五个部分组成，分别是：<strong>Client、 JobTracker、TaskTracker、TaskScheduler以及Task</strong></p>
+<p><img src="/myblog/2023/06/06/bigdata-note/11.png" alt="MapReduce的体系结构"></p>
+<ol>
+<li><p>Client </p>
+<p>•用户编写的MapReduce程序通过Client提交到JobTracker端 </p>
+<p>•用户可通过Client提供的一些接口查看作业运行状态 </p>
+</li>
+<li><p>JobTracker </p>
+<p>•JobTracker负责资源监控和作业调度 </p>
+<p>•JobTracker 监控所有TaskTracker与Job的健康状况，一旦发现失败，就将相应的任务转移到其他节点 </p>
+<p>•JobTracker 会跟踪任务的执行进度、资源使用量等信息，并将这些信息告诉任务调度器（TaskScheduler），而调度器会在资源出现空闲时，选择合适的任务去使用这些资源</p>
+</li>
+<li><p>TaskTracker</p>
+<p>•TaskTracker 会周期性地通过“心跳”将本节点上资源的使用情况和任务的运行进度汇报给JobTracker，同时接收JobTracker 发送过来的命令并执行相应的操作（如启动新任务、杀死任务等）；</p>
+<p>•TaskTracker 使用“slot”等量划分本节点上的资源量（CPU、内存等）。一个Task 获取到一个slot 后才有机会运行，而Hadoop调度器的作用就是将各个TaskTracker上的空闲slot分配给Task使用。slot 分为Map slot 和 Reduce slot 两种，分别供Map Task和Reduce Task使用。</p>
+</li>
+<li><p>TaskScheduler 作用是根据JobTracker发送的任务进度和资源使用信息，决定把哪个任务 分发给哪个节点的TaskTracker执行。 TaskScheduler是一个可插拔模块，即允许用户自己编写任务调度策略 </p>
+</li>
+<li><p>Task 由TaskTracker启动，map任务和reduce任务， 同一台机器可以既运行map任务 又可以运行reduce任务</p>
+</li>
+</ol>
+<h3 id="7-4-MapReduce工作流程概述"><a href="#7-4-MapReduce工作流程概述" class="headerlink" title="7.4 MapReduce工作流程概述"></a>7.4 MapReduce工作流程概述</h3><p>•不同的Map任务之间不会进行通信 </p>
+<p>•不同的Reduce任务之间也不会发生任何信息交换 </p>
+<p>•用户不能显式地从一台机器向另一台机器发送消息 •所有的数据交换都是通过MapReduce框架自身去实现的</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/12.png" alt=" MapReduce工作流程"></p>
+<h3 id="7-5-MapReduce各个执行阶段"><a href="#7-5-MapReduce各个执行阶段" class="headerlink" title="7.5 MapReduce各个执行阶段"></a>7.5 MapReduce各个执行阶段</h3><p><img src="/myblog/2023/06/06/bigdata-note/13.png"></p>
+<h3 id="7-6-Shuffle过程汇总"><a href="#7-6-Shuffle过程汇总" class="headerlink" title="7.6 Shuffle过程汇总"></a>7.6 Shuffle过程汇总</h3><p><strong>定义</strong>：Shuffle是指对Map任务输出结果进行<strong>分区、排序、合并、归并</strong>等处理并交给Reduce的过程。</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/14.png"></p>
+<h3 id="7-7-※一个WordCount执行过程的实例"><a href="#7-7-※一个WordCount执行过程的实例" class="headerlink" title="7.7 ※一个WordCount执行过程的实例"></a>7.7 ※一个WordCount执行过程的实例</h3><p>1.Map</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/15.png" alt="Map过程示意图"></p>
+<p>2.Reduce</p>
+<p>用户没有定义Combiner时的Reduce过程示意图</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/16.png" alt="用户没有定义Combiner时的Reduce过程示意图"></p>
+<p>用户有定义Combiner时的Reduce过程示意图</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/17.png" alt="用户有定义Combiner时的Reduce过程示意图"></p>
+<h4 id="7-8-MapReduce的优缺点"><a href="#7-8-MapReduce的优缺点" class="headerlink" title="7.8 MapReduce的优缺点"></a>7.8 MapReduce的优缺点</h4><h4 id="7-8-1-MapReduce优点"><a href="#7-8-1-MapReduce优点" class="headerlink" title="7.8.1 MapReduce优点"></a>7.8.1 <strong>MapReduce优点</strong></h4><ul>
+<li>MapReduce 易于编程。通过简单接口完成分布式程序的编写，可运行在众多服务器组成的集群上。</li>
+<li>良好的扩展性。出现资源不足的情况，可以直接增加机器数量来扩展集群的计算能力</li>
+<li>高容错性，体现在MapReduce能使程序能够部署在廉价商用服务器上。如果其中一台机器故障，自动切换到其他节点，而且这个过程不需要人工参与，完全在 Hadoop 内部完成。 </li>
+<li>适合PB级以上海量数据的离线处理</li>
+</ul>
+<h3 id="7-8-2-MapReduce的缺点"><a href="#7-8-2-MapReduce的缺点" class="headerlink" title="7.8.2 MapReduce的缺点"></a>7.8.2 MapReduce的缺点</h3><p>MapReduce 虽然具有很多优势，但也有不适用的场景，即有些场 景下并不适合 MapReduce 来处理，主要表现在以下几个方面。 </p>
+<ul>
+<li><strong>不适合实时计算</strong>。MapReduce 无法毫秒级内返回结果。 MapReduct 并不适合数据的在线处理。 </li>
+<li><strong>不适合进行流式计算</strong>。MapReduce设计之初 输入数据集是静态 的，不适合输入动态数据，不适合即流式计算。 </li>
+<li><strong>不适合 DAG（有向无环图）计算</strong>。程序之间的依赖性， MapReduce的处理方法是将使用后每个MapReduce 作业的输出结果写入磁盘，这样会造成大量的磁盘 IO，导致性能非常低下。 </li>
+</ul>
+<h3 id="7-9-MapReduce的具体应用"><a href="#7-9-MapReduce的具体应用" class="headerlink" title="7.9 MapReduce的具体应用"></a>7.9 MapReduce的具体应用</h3><p>用MapReduce实现关系的自然连接</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/18.png"></p>
+<ul>
+<li>假设有关系R(A，B)和S(B,C)，对二者进行自然连接操作 </li>
+<li>使用Map过程，把来自R的每个元组&lt;a,b&gt;转换成一个键值对&lt;b,&lt;R,a&gt;&gt;，其中的键就是属性B的值。把关系R包含到值中，这样做使 得我们可以在Reduce阶段，只把那些来自R的元组和来自S的元组进 行匹配。类似地，使用Map过程，把来自S的每个元组，转换成 一个键值对&gt; </li>
+<li>所有具有相同B值的元组被发送到同一个Reduce进程中，Reduce进 程的任务是，把来自关系R和S的、具有相同属性B值的元组进行合并 </li>
+<li>Reduce进程的输出则是连接后的元组，输出被写到一个单独的输出文件中</li>
+</ul>
+<h2 id="第8章-Hadoop架构再探讨"><a href="#第8章-Hadoop架构再探讨" class="headerlink" title="第8章 Hadoop架构再探讨"></a>第8章 Hadoop架构再探讨</h2><h3 id="8-1Hadoop的局限与不足"><a href="#8-1Hadoop的局限与不足" class="headerlink" title="8.1Hadoop的局限与不足"></a>8.1Hadoop的局限与不足</h3><ul>
+<li>抽象层次低</li>
+<li>表达能力有限</li>
+<li>开发者自己管理作业之间的依赖关系</li>
+<li>难以看到程序整体逻辑</li>
+<li>执行迭代操作效率低</li>
+<li>资源浪费</li>
+<li>实时性差</li>
+</ul>
+<h3 id="8-2-针对Hadoop的改进与提升"><a href="#8-2-针对Hadoop的改进与提升" class="headerlink" title="8.2 针对Hadoop的改进与提升"></a>8.2 针对Hadoop的改进与提升</h3><p>Hadoop的优化与发展主要体现在两个大方面： </p>
+<ul>
+<li>一方面是Hadoop自身两大核心组件MapReduce 和HDFS的架构设计改进； </li>
+<li>另一方面是Hadoop生态系统其它组件的不断丰富，加入了Pig、Tez、Spark和Kafka等新组件</li>
+</ul>
+<p>Hadoop 1.0到2.0</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/19.png"></p>
+<h3 id="8-3-HDFS-HA"><a href="#8-3-HDFS-HA" class="headerlink" title="8.3 HDFS HA"></a>8.3 HDFS HA</h3><p>HDFS HA（High Availability）是<strong>为了解决单点故障问题</strong>，提供热备份。第二名称节点无法提供热备份功能，即在名称节点发生故障时不能实时切换到第二名称节点立即对外提供服务，需要停机恢复。</p>
+<p> <strong>HDFS HA的实现：</strong></p>
+<ul>
+<li>HA集群设置两个名称节点，“活跃”和“待命” </li>
+<li>两种名称节点的状态同步，可以借助于一个共享存储系统来实现 </li>
+<li>一旦活跃名称节点出现故障，就可以立即切换到待命名称节点 </li>
+<li>Zookeeper确保一个名称节点在对外服务 </li>
+<li>名称节点维护映射信息，数据节点同时向两个名称节点汇报信息</li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/20.png" alt="HDFS HA架构"></p>
+<h3 id="8-4-HDFS-Federation"><a href="#8-4-HDFS-Federation" class="headerlink" title="8.4 HDFS Federation"></a>8.4 HDFS Federation</h3><p><strong>1.HDFS1.0中存在的问题</strong></p>
+<ul>
+<li>单点故障问题 </li>
+<li>不可以水平扩展 </li>
+<li>系统整体性能受限于单个名称节点的吞吐量 </li>
+<li>单个名称节点难以提供不同程序之间的隔离性 </li>
+<li>HDFS HA是热备份，提供高可用性，但是无法解决可扩展性、系统性能和隔离性</li>
+</ul>
+<p><strong>2.HDFS Federation的设计</strong></p>
+<ul>
+<li>在HDFS Federation中，设计了<strong>多个相互独立的名称节点</strong>，使得 HDFS的命名服务<strong>能够水平扩展</strong>， 这些名称节点分别进行各自命名空间和块的管理，相互之间是联邦关系，不需要彼此协调。并且向后兼容； </li>
+<li>HDFS Federation中，所有名称 节点会共享底层的数据节点存储资源，数据节点向所有名称节点汇报 </li>
+<li>属于同一个命名空间的块构成一个“块池” </li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/21.png" alt="HDFS Federation架构"></p>
+<p><strong>3.HDFS Federation的访问方式</strong></p>
+<ul>
+<li>对于Federation中的多个命名空间，可以采用客户端挂载表方式进行数据共享和访问 </li>
+<li>客户可以访问不同的挂载点来访问不同的子命名空间 </li>
+<li>把各个命名空间挂载到全局“挂载表” 中，实现数据全局共享 </li>
+<li>同样的命名空间挂载到个人的挂载表中， 就成为应用程序可见的命名空间</li>
+</ul>
+<p><strong>4.HDFS Federation相对于HDFS1.0的优势</strong></p>
+<p>HDFS Federation设计可解决单名称节点存在的以下几个问题： </p>
+<ul>
+<li>HDFS集群扩展性。多个名称节点各自分管一部分目录，使得一个集群可以扩展到更多节点，不再像HDFS1.0中那样由于内存的限制制约文件存储数目； </li>
+<li>性能更高效。多个名称节点管理不同的数据，且同时对外提供服务，将为用户提供更高的读写吞吐率</li>
+<li>良好的隔离性。用户可根据需要将不同业务数据交由不同名称节点管理，这样不同业务之间影响很小。</li>
+</ul>
+<ul>
+<li> 需要注意的，HDFS Federation并<strong>不能解决单点故障问题</strong>，也就是说，每个名称节点都存在在单点故障问题，需要为<strong>每个名称节点部署一个后备名称节点</strong>， 以应对名称节点挂掉对业务产生的影响。 </li>
+<li>HDFS 联邦架构采用了Client Side Mount Table分摊文件和负载，该方法 更多的需要人工介入以达到理想的负载均衡。 </li>
+<li>HDFS 联邦架构是改造了客户端的解决方案，重度依赖客户端行为，对客户端 不透明。当增加了Namenode，并且进行了Namespace拆分后，如果客户端的挂 载点不及时更新，有可能导致客户端的访问是合法但不符合预期。 </li>
+</ul>
+<h3 id="8-4-※YARN"><a href="#8-4-※YARN" class="headerlink" title="8.4 ※YARN"></a>8.4 ※YARN</h3><h4 id="8-4-1-YARN设计思路"><a href="#8-4-1-YARN设计思路" class="headerlink" title="8.4.1 YARN设计思路"></a>8.4.1 YARN设计思路</h4><ul>
+<li>MapReduce1.0既是一个计算框架，也是一个资源管理调度框架； </li>
+<li>到了Hadoop2.0以后， MapReduce1.0中的<strong>资源管理调度功能</strong>，被单独分离出来形成了<strong>YARN</strong>，它是一个纯粹的资源管理调度框架； </li>
+<li>被剥离了资源管理调度功能的MapReduce就变成了MapReduce2.0， 它是运行在YARN之上的一个<strong>纯粹的计算框架</strong>，由YARN为其提供资源管理调度服务。</li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/22.png"></p>
+<h4 id="8-4-2-YARN体系结构"><a href="#8-4-2-YARN体系结构" class="headerlink" title="8.4.2 YARN体系结构"></a>8.4.2 YARN体系结构</h4><p>ResourceManager：</p>
+<ul>
+<li>处理客户端请求 </li>
+<li>启动/监控ApplicationMaster </li>
+<li>监控NodeManager </li>
+<li>资源分配与调度</li>
+</ul>
+<p>NodeManager：</p>
+<ul>
+<li>单个节点上的资源管理 </li>
+<li>处理来自ResourceManger的命令 </li>
+<li>处理来自ApplicationMaster的命令</li>
+</ul>
+<p>ApplicationMaster：</p>
+<ul>
+<li>为应用程序申请资源， 并分配给内部任务 </li>
+<li>任务调度、监控与容错</li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/23.png"></p>
+<p><strong>ResourceManager</strong></p>
+<ul>
+<li>ResourceManager（RM）是一个<strong>全局的资源管理器</strong>，负责整个系统的资源管理和分配，主要包括两个组件，即<strong>调度器和应用程序管理器</strong>； </li>
+<li>调度器接收来自ApplicationMaster的应用程序资源请求，把集群中的资源以“容 器”的形式分配给提出申请的应用程序，容器的选择通常会考虑应用程序所要处 理的数据的位置，进行就近选择，从而实现“计算向数据靠拢”； </li>
+<li>容器作为动态资源分配单位，每个容器中都封装了一定数量的CPU、 内存、磁盘等资源，从而限定每个应用程序可以使用的资源量； </li>
+<li>调度器被设计成是一个可插拔的组件，YARN不仅自身提供了许多种直接可用的 调度器，也允许用户根据自己的需求重新设计调度器； </li>
+<li>应用程序管理器负责系统中所有应用程序的管理工作， 主要包括应用程序提交、与调度器协商资源以启动ApplicationMaster、监控 ApplicationMaster运行状态并在失败时重新启动等</li>
+</ul>
+<p><strong>ApplicationMaster</strong></p>
+<p>ResourceManager接收用户提交的作业，按照作业的上下文信息以及从 NodeManager收集来的容器状态信息，启动调度过程，为用户作业启动一个 ApplicationMaster </p>
+<p>ApplicationMaster的主要功能是： </p>
+<ul>
+<li>当用户作业提交时，ApplicationMaster与ResourceManager协商获取资源， ResourceManager会以容器的形式为ApplicationMaster分配资源； </li>
+<li>把获得的资源进一步分配给内部的各个任务（Map任务或Reduce任务）， 实现资源的“二次分配”； </li>
+<li>与NodeManager保持交互通信进行应用程序的启动、运行、监控和停止， 监控申请到的资源的使用情况，对所有任务的执行进度和状态进行监控，并在 任务发生失败时执行失败恢复（即重新申请资源重启任务）； </li>
+<li>定时向ResourceManager发送“心跳”消息，报告资源的使用情况和应用 的进度信息； </li>
+<li>当作业完成时，ApplicationMaster向ResourceManager注销容器，执行周期完成。</li>
+</ul>
+<p><strong>NodeManager</strong></p>
+<p>NodeManager是驻留在一个YARN集群中的每个节点上的代理，主要负责： </p>
+<ul>
+<li>容器生命周期管理 </li>
+<li>监控每个容器的资源（CPU、内存等）使用情况 </li>
+<li>跟踪节点健康状况 </li>
+<li>以“心跳”的方式与ResourceManager保持通信 </li>
+<li>向ResourceManager汇报作业的资源使用情况和每个容器的运行状态 </li>
+<li>接收来自ApplicationMaster的启动/停止容器的各种请求 </li>
+</ul>
+<p>需要说明的是，NodeManager主要负责管理抽象的容器，只处理与容器相关的事情，而<strong>不具体负责每个任务</strong>（Map任务或Reduce任务）自身状态的管理，因为这 些管理工作是由ApplicationMaster完成的，ApplicationMaster会通过不断与 NodeManager通信来掌握各个任务的执行状态</p>
+<h4 id="8-4-3-※YARN框架与MapReduce1-0框架的对比分析"><a href="#8-4-3-※YARN框架与MapReduce1-0框架的对比分析" class="headerlink" title="8.4.3 ※YARN框架与MapReduce1.0框架的对比分析"></a>8.4.3 ※YARN框架与MapReduce1.0框架的对比分析</h4><p>从MapReduce1.0框架发展到YARN框架，<strong>客户端并没有发生变化</strong>，其大部分调用API及接口都保持兼容，因此，原来针对Hadoop1.0开发的<strong>代码不用做大的改动</strong>，就可以直接放到Hadoop2.0平台上运行；</p>
+<p><strong>YARN的优势：</strong> </p>
+<ul>
+<li>大大减少了承担中心服务功能的ResourceManager的资源消耗 </li>
+<li>ApplicationMaster来完成需要大量资源消耗的任务调度和监控 </li>
+<li>多个作业对应多个ApplicationMaster，实现了监控分布化 </li>
+<li>MapReduce1.0只能支持MapReduce编程模型，而YARN可以运行包括MapReduce在内的不同类型的计算框架， 只要编程实现相应的ApplicationMaster </li>
+<li>YARN中的资源管理比MapReduce1.0更加高效，因为是以容器为单位，而不是以slot为单位</li>
+</ul>
+<h4 id="8-4-4-YARN的发展目标"><a href="#8-4-4-YARN的发展目标" class="headerlink" title="8.4.4 YARN的发展目标"></a>8.4.4 YARN的发展目标</h4><p>YARN的目标就是实现<strong>“一个集群多个框架”</strong>，即在一个集群上部署一个统 一的资源调度管理框架YARN，在YARN之上可以部署其他各种计算框架。</p>
+<p>原因：</p>
+<ul>
+<li>一个企业当中同时存在各种不同的业务应用场景，需要采用不同的计算框架</li>
+<li>这些产品通常来自不同的开发团队，具有各自的资源调度管理机制 </li>
+<li>为了避免不同类型应用之间互相干扰，企业就需要把内部的服务器拆分成多个集群，分别安装运行不同的计算框架，即“一个框架一个集群”</li>
+</ul>
+<p><strong>从而导致集群资源利用率低、数据无法共享、维护代价高的问题</strong></p>
+<h3 id="8-5-Tez"><a href="#8-5-Tez" class="headerlink" title="8.5 Tez"></a>8.5 Tez</h3><ul>
+<li>在Hadoop2.0生态系统中，MapReduce、Hive、Pig等计算框架，都需要最终 以MapReduce任务的形式执行数据分析，因此，Tez框架可以发挥重要的作用 </li>
+<li>借助于Tez框架实现对MapReduce、Pig和Hive等的性能优化 </li>
+<li>可以解决现有MR框架在迭代计算（如PageRank计算）和交互式计算方面的 问题</li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/24.png" alt="Tez框架在Hadoop生态系统中的作用"></p>
+<h2 id="第9章Hive"><a href="#第9章Hive" class="headerlink" title="第9章Hive"></a>第9章Hive</h2><h3 id="9-1-Hive与Hadoop生态系统中其他组件的关系"><a href="#9-1-Hive与Hadoop生态系统中其他组件的关系" class="headerlink" title="9.1 Hive与Hadoop生态系统中其他组件的关系"></a>9.1 Hive与Hadoop生态系统中其他组件的关系</h3><ul>
+<li><strong>Hive依赖于HDFS存储数据</strong>：HDFS作为高可靠性的底层存储，用来存储海量数据 </li>
+<li><strong>Hive依赖于MapReduce处理数据</strong>：MapReduce对这些海量数据进行处理，实现高性能计算，用HiveQL语句编写的处理逻辑最终均要转化为MapReduce任务来运行 </li>
+<li><strong>Pig可以作为Hive的替代工具</strong>： pig是一种数据流语言和运行环境，适合用于Hadoop和MapReduce平台上查询半结构化数据集。常用于ETL过程的一部分，即将外部数据装载到 Hadoop集群中，然后转换为用户期待的数据格式 </li>
+<li><strong>HBase 提供数据的实时访问</strong>：HBase一个面向列的、分布式的、可伸缩的数据库，它可以提供数据的实时访问功能，而Hive只能处理静态数据，主要是BI报表数据，所以HBase 与Hive的功能是互补的，它实现了Hive不能提供功能</li>
+</ul>
+<p><img src="/myblog/2023/06/06/bigdata-note/25.png" alt="Hive与Hadoop生态系统中其他部分的关系"></p>
+<h3 id="9-2-Hive系统架构"><a href="#9-2-Hive系统架构" class="headerlink" title="9.2 Hive系统架构"></a>9.2 Hive系统架构</h3><p>Hive主要由<strong>用户接口模块、驱动模块以及元数据存储模块</strong>组成。</p>
+<p>用户接口模块：JDBC, CLI, HWI等，向用户提供编程访问的接口</p>
+<p>驱动模块：编译器、优化器、执行器等。当采用MapReduce作为执行引擎时，驱动模块负责把HiveQL语句转换成一系列的MapReduce任务</p>
+<p>元数据存储模块：一个独立的关系数据库，通常是与MySQL数据库连接后创建的一个MySQL实例</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/26.png" alt="Hive系统架构"></p>
+<h3 id="9-3-Impala系统架构"><a href="#9-3-Impala系统架构" class="headerlink" title="9.3 Impala系统架构"></a>9.3 Impala系统架构</h3><p>Impala主要由Impalad、State Store和CLI三部分组成。</p>
+<p>Impalad：负责协调客户端提交的查询的执行，给其它Imaplad分配认为以及收集其它Impalad的执行结果进行汇总</p>
+<p>State Store：负责手机分布在集群中各个Impalad进程的资源信息，用于查询的调度。</p>
+<p>CLI：给用户提供了执行查询的命令行工具</p>
+<p><img src="/myblog/2023/06/06/bigdata-note/27.png"></p>
+<h3 id="9-4-Impala与Hive的比较"><a href="#9-4-Impala与Hive的比较" class="headerlink" title="9.4 Impala与Hive的比较"></a>9.4 Impala与Hive的比较</h3><p>相同点： </p>
+<ol>
+<li>Hive与Impala使用相同的存储数据池都支持把数据存储于HDFS和HBase中</li>
+<li>Hive与Impala使用相同的元数据。</li>
+<li>Hive与Impala中对SQL的解释处理比较相似，都是通过词法分析生成执行计划</li>
+</ol>
+<p>不同点：</p>
+<ol>
+<li>Hive继承了Hadoop的批处理方式，不能在大规模数据集上实现低延迟的快速查询；而Impala适合进行实时交互式的SQL查询</li>
+<li>当采用MapReduce作为执行引擎时，执行计划组合成管道型的MapReduce任务进行执行，Impala则把执行计划表现为一颗完整的执行计划树，更自然的分发执行计划到们各个Impalad执行查询</li>
+<li>Hive在执行过程中，如果内存不足则会使用外存，保证查询顺利执行完成，而Impala则不会。</li>
+</ol>
+<p>总结：Hive更适合大数据量的批量处理，Impala适合处理输出数据较小的查询请求和实时交互查询。可以先使用Hive进行数据转换处理，再使用Impala对Hive处理后的结果数据集进行快速的数据分析。</p>
+<h2 id="第10章-Spark"><a href="#第10章-Spark" class="headerlink" title="第10章 Spark"></a>第10章 Spark</h2><h2 id="第11章-流计算"><a href="#第11章-流计算" class="headerlink" title="第11章 流计算"></a>第11章 流计算</h2><h2 id="第12章-Flink"><a href="#第12章-Flink" class="headerlink" title="第12章 Flink"></a>第12章 Flink</h2><h2 id="第13章-图计算"><a href="#第13章-图计算" class="headerlink" title="第13章 图计算"></a>第13章 图计算</h2><h2 id="第14章-数据可视化"><a href="#第14章-数据可视化" class="headerlink" title="第14章 数据可视化"></a>第14章 数据可视化</h2><h2 id="第15章-大数据的应用"><a href="#第15章-大数据的应用" class="headerlink" title="第15章 大数据的应用"></a>第15章 大数据的应用</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/myblog/2023/05/10/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF-%E5%8E%A6%E9%97%A8%E5%A4%A7%E5%AD%A6-%E6%9E%97%E5%AD%90%E9%9B%A8"><span class="nav-number">1.</span> <span class="nav-text">大数据技术 厦门大学 林子雨</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2"><span class="nav-number">1.1.</span> <span class="nav-text">教学大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%AB%A0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A6%82%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">第1章 大数据概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%BF%A1%E6%81%AF%E5%8C%96%E6%B5%AA%E6%BD%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 第三次信息化浪潮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2  大数据的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.3  大数据关键技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E4%BA%91%E8%AE%A1%E7%AE%97%E3%80%81%E7%89%A9%E8%81%94%E7%BD%91%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.4 大数据与云计算、物联网的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.5 大数据处理的基本流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC2%E7%AB%A0-Hadoop"><span class="nav-number">1.3.</span> <span class="nav-text">第2章 Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Hadoop%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 Hadoop简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Hadoop%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 Hadoop项目结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC3%E7%AB%A0-%E2%80%BBHDFS"><span class="nav-number">1.4.</span> <span class="nav-text">第3章 ※HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 分布式文件系统的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-HDFS%E7%AE%80%E4%BB%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 HDFS简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-HDFS%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">3.2.1 HDFS需要实现的目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-HDFS%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">3.2.2 HDFS的缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-HDFS%E7%9A%84%E5%9D%97"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 HDFS的块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E2%80%BB%E5%90%8D%E7%A7%B0%E8%8A%82%E7%82%B9%E5%92%8C%E6%95%B0%E6%8D%AE%E8%8A%82%E7%82%B9"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.4 ※名称节点和数据节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-%E5%90%8D%E7%A7%B0%E8%8A%82%E7%82%B9%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">3.4.1 名称节点的结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-%E5%90%8D%E7%A7%B0%E8%8A%82%E7%82%B9%E7%9A%84%E5%90%AF%E5%8A%A8"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.4.2 名称节点的启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-%E7%AC%AC%E4%BA%8C%E5%90%8D%E7%A7%B0%E8%8A%82%E7%82%B9"><span class="nav-number">1.4.6.</span> <span class="nav-text">3.4.3 第二名称节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-4-%E6%95%B0%E6%8D%AE%E8%8A%82%E7%82%B9"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">3.4.4 数据节点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC4%E7%AB%A0-HBase"><span class="nav-number">1.5.</span> <span class="nav-text">第4章 HBase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1HBase%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1HBase数据模型概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Region-0-96-0%E4%B9%8B%E5%89%8D"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 Region(0.96.0之前)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-HLog%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.3 HLog工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC5%E3%80%816%E7%AB%A0-NoSQL%E5%92%8C%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.6.</span> <span class="nav-text">第5、6章 NoSQL和云数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-NoSQL%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 NoSQL的四大类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-NoSQL%E7%9A%84%E4%B8%89%E5%A4%A7%E5%9F%BA%E7%9F%B3"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 NoSQL的三大基石</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-CAP"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.2.1 CAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-BASE"><span class="nav-number">1.6.4.</span> <span class="nav-text">5.2.2 BASE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%89%B9%E6%80%A7"><span class="nav-number">1.6.5.</span> <span class="nav-text">6.1 云数据库的概念和特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E5%AE%83%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.1 云数据库和其它数据库的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC7%E7%AB%A0-%E2%80%BBMapReduce"><span class="nav-number">1.7.</span> <span class="nav-text">第7章 ※MapReduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 分布式并行编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-MapReduce%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 MapReduce模型简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-MapReduce%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 MapReduce的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-MapReduce%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">1.7.4.</span> <span class="nav-text">7.4 MapReduce工作流程概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-MapReduce%E5%90%84%E4%B8%AA%E6%89%A7%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="nav-number">1.7.5.</span> <span class="nav-text">7.5 MapReduce各个执行阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-Shuffle%E8%BF%87%E7%A8%8B%E6%B1%87%E6%80%BB"><span class="nav-number">1.7.6.</span> <span class="nav-text">7.6 Shuffle过程汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-7-%E2%80%BB%E4%B8%80%E4%B8%AAWordCount%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.7.7.</span> <span class="nav-text">7.7 ※一个WordCount执行过程的实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-8-MapReduce%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.7.7.1.</span> <span class="nav-text">7.8 MapReduce的优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-8-1-MapReduce%E4%BC%98%E7%82%B9"><span class="nav-number">1.7.7.2.</span> <span class="nav-text">7.8.1 MapReduce优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-8-2-MapReduce%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.7.8.</span> <span class="nav-text">7.8.2 MapReduce的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-9-MapReduce%E7%9A%84%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8"><span class="nav-number">1.7.9.</span> <span class="nav-text">7.9 MapReduce的具体应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC8%E7%AB%A0-Hadoop%E6%9E%B6%E6%9E%84%E5%86%8D%E6%8E%A2%E8%AE%A8"><span class="nav-number">1.8.</span> <span class="nav-text">第8章 Hadoop架构再探讨</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1Hadoop%E7%9A%84%E5%B1%80%E9%99%90%E4%B8%8E%E4%B8%8D%E8%B6%B3"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1Hadoop的局限与不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E9%92%88%E5%AF%B9Hadoop%E7%9A%84%E6%94%B9%E8%BF%9B%E4%B8%8E%E6%8F%90%E5%8D%87"><span class="nav-number">1.8.2.</span> <span class="nav-text">8.2 针对Hadoop的改进与提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-HDFS-HA"><span class="nav-number">1.8.3.</span> <span class="nav-text">8.3 HDFS HA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-HDFS-Federation"><span class="nav-number">1.8.4.</span> <span class="nav-text">8.4 HDFS Federation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-%E2%80%BBYARN"><span class="nav-number">1.8.5.</span> <span class="nav-text">8.4 ※YARN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-1-YARN%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">8.4.1 YARN设计思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-2-YARN%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.8.5.2.</span> <span class="nav-text">8.4.2 YARN体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-3-%E2%80%BBYARN%E6%A1%86%E6%9E%B6%E4%B8%8EMapReduce1-0%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-number">1.8.5.3.</span> <span class="nav-text">8.4.3 ※YARN框架与MapReduce1.0框架的对比分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-4-YARN%E7%9A%84%E5%8F%91%E5%B1%95%E7%9B%AE%E6%A0%87"><span class="nav-number">1.8.5.4.</span> <span class="nav-text">8.4.4 YARN的发展目标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-Tez"><span class="nav-number">1.8.6.</span> <span class="nav-text">8.5 Tez</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC9%E7%AB%A0Hive"><span class="nav-number">1.9.</span> <span class="nav-text">第9章Hive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-Hive%E4%B8%8EHadoop%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%85%B6%E4%BB%96%E7%BB%84%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.9.1.</span> <span class="nav-text">9.1 Hive与Hadoop生态系统中其他组件的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-Hive%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">1.9.2.</span> <span class="nav-text">9.2 Hive系统架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-Impala%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">1.9.3.</span> <span class="nav-text">9.3 Impala系统架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-Impala%E4%B8%8EHive%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.9.4.</span> <span class="nav-text">9.4 Impala与Hive的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC10%E7%AB%A0-Spark"><span class="nav-number">1.10.</span> <span class="nav-text">第10章 Spark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC11%E7%AB%A0-%E6%B5%81%E8%AE%A1%E7%AE%97"><span class="nav-number">1.11.</span> <span class="nav-text">第11章 流计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC12%E7%AB%A0-Flink"><span class="nav-number">1.12.</span> <span class="nav-text">第12章 Flink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC13%E7%AB%A0-%E5%9B%BE%E8%AE%A1%E7%AE%97"><span class="nav-number">1.13.</span> <span class="nav-text">第13章 图计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC14%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">1.14.</span> <span class="nav-text">第14章 数据可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC15%E7%AB%A0-%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.15.</span> <span class="nav-text">第15章 大数据的应用</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/myblog/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/myblog/lib/anime.min.js"></script>
+  <script src="/myblog/lib/velocity/velocity.min.js"></script>
+  <script src="/myblog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/myblog/js/utils.js"></script>
+
+<script src="/myblog/js/motion.js"></script>
+
+
+<script src="/myblog/js/schemes/muse.js"></script>
+
+
+<script src="/myblog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
