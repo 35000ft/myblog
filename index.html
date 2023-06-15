@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-06-15 16:56:08 / Modified: 16:57:45" itemprop="dateCreated datePublished" datetime="2023-06-15T16:56:08+08:00">2023-06-15</time>
+              <time title="Created: 2023-06-15 16:56:08 / Modified: 17:00:02" itemprop="dateCreated datePublished" datetime="2023-06-15T16:56:08+08:00">2023-06-15</time>
             </span>
 
           
@@ -188,168 +188,14 @@
 <h1 id="第1章-引论"><a href="#第1章-引论" class="headerlink" title="第1章 引论"></a>第1章 引论</h1><h2 id="1-1-什么叫编译程序"><a href="#1-1-什么叫编译程序" class="headerlink" title="1.1 什么叫编译程序"></a>1.1 什么叫编译程序</h2><p>通常所说的翻译程序是指这样的一个程序,它能够把源语言程序转换成另目标语言程序，而后者与前者在逻辑上是等价的。</p>
 <h2 id="1-2-※编译程序的结构"><a href="#1-2-※编译程序的结构" class="headerlink" title="1.2 ※编译程序的结构"></a>1.2 ※编译程序的结构</h2><p>编译程序总框</p>
 <p><img src="/myblog/2023/06/15/CompilationPrinciple_note/1-1.png" alt="编译程序总框"></p>
-<p><strong>各部分功能：</strong></p>
-<ul>
-<li><strong>词法分析器</strong>，进行词法分析输出单词符号；</li>
-<li><strong>语法分析器</strong>，对单词符号串进行语法分析，识别出各类语法单位，最终判断输人串是否构成语法上正确的“程序”；</li>
-<li><strong>语义分析与中间代码产生器</strong>，按照语义规则对语法分析器归约出的语法单位进行语义分析并把它们翻译成一定形式的中间代码；</li>
-<li><strong>优化器</strong>，对中间代码进行优化处理；</li>
-<li><strong>目标代码生成器</strong>，把中间代码翻译成目标程序。</li>
-</ul>
-<h2 id="1-3-遍的概念"><a href="#1-3-遍的概念" class="headerlink" title="1.3 遍的概念"></a>1.3 遍的概念</h2><p>遍就是对源程序或源程序的中间结果从头到尾扫描一次，并作有关的加工处理，生成新的中间结果或目标程序。</p>
-<h2 id="1-4-编译前端与后端"><a href="#1-4-编译前端与后端" class="headerlink" title="1.4 编译前端与后端"></a>1.4 编译前端与后端</h2><ul>
-<li>前端主要由<strong>与源语言有关但与目标机无关</strong>的那些部分组成。这些部分通常包括词法分析、语法分析语义分析与中间代码产生。</li>
-<li>后端包括编译程序中与目标机有关的那些部分，如与目标机有关的代码优化和目标代码生成等。通常,后端不依赖于源语言而仅仅依赖于中间语言。</li>
-</ul>
-<p>​    对代码逻辑优化属于前端优化，对目标机优化如CPU的指令集属于后端优化</p>
-<h1 id="第2章-高级语言及其语法描述"><a href="#第2章-高级语言及其语法描述" class="headerlink" title="第2章 高级语言及其语法描述"></a>第2章 高级语言及其语法描述</h1><h2 id="2-1-语法"><a href="#2-1-语法" class="headerlink" title="2.1 语法"></a>2.1 语法</h2><p>一个语言的语法是指这样的一-组规则，用它可以<strong>形成和产生一个合式的程序</strong>。这些规则的一部分称为<strong>词法规则</strong>，另一部分称为<strong>语法规则</strong>或产生规则。</p>
-<p>例如,字符串0.5*X1+C,通常被看成是常数0.5、标识符X1和C,以及算符*和+所组成的一个表达式。其中常数’0.5’,标识符‘X1’和“C’ ,算符‘* ‘和‘+ ‘称为语言的<br><strong>单词符号</strong>，而表达式’0.5<em>X1 + C’称为语言的一个*<em>语法范畴，或语法单位。</em></em></p>
-<p>词法规则规定了单词符号的形成规则，语法规则是语法单位的形成规则。</p>
-<h2 id="2-2-语义"><a href="#2-2-语义" class="headerlink" title="2.2 语义"></a>2.2 语义</h2><p>一个语言的语义是指这样的一组规则，使用它可以定义一一个程序的意义。    </p>
-<h2 id="2-3-上下文无关文法"><a href="#2-3-上下文无关文法" class="headerlink" title="2.3 上下文无关文法"></a>2.3 上下文无关文法</h2><p>文法的定义：文法是描述语言的语法结构的形式规则(即语法规则)。</p>
-<p><strong>上下文无关文法的定义：</strong>上下文无关文法是这样一种文法，它所定义的语法范畴是<strong>完全独立于这种范畴可能出现的环境</strong>的。例如,在程序语言中，当碰到一个算术表达式时,我们可以只对其进行处理而不考虑它所处的上下文。</p>
-<p>一个上下文无关文法G包括四个组成部分:一组终结符号，一组非终结符号，一个开始符号，以及一组产生式。G(VT, VN, S, P)</p>
-<h2 id="2-4-句型与句子、最左推导"><a href="#2-4-句型与句子、最左推导" class="headerlink" title="2.4 句型与句子、最左推导"></a>2.4 句型与句子、最左推导</h2><p>假定G是一个文法，S是它的开始符号。如果S ::=* α, 则称α是一个句型。<strong>仅含终结符号的句型是一个句子</strong>。<strong>文法G所产生的句子的全体</strong>是一个语言，记为L(G)、</p>
-<p>为了对句子的结构进行确定性分析，我们往往只考虑最左推导或者最右推导。</p>
-<p>最左推导是指，任何一步α::=都是对α中的最左非终结符进行替换的。最右反之。</p>
-<h2 id="2-5-语法树与文法二义性"><a href="#2-5-语法树与文法二义性" class="headerlink" title="2.5 语法树与文法二义性"></a>2.5 语法树与文法二义性</h2><p>如果一个文法中存在某个句子,它有两个不同的最左或最右推导，则这个文法是二义的。</p>
-<p>解决文法二义性的方法，增加规则进行限制，消除二义性。</p>
-<h1 id="第3章-词法分析"><a href="#第3章-词法分析" class="headerlink" title="第3章  词法分析"></a>第3章  词法分析</h1><h2 id="3-1-程序语言的单词符号类型"><a href="#3-1-程序语言的单词符号类型" class="headerlink" title="3.1 程序语言的单词符号类型"></a>3.1 程序语言的单词符号类型</h2><ol>
-<li>关键字：程序语言定义的具有固定意义的标识符</li>
-<li>标识符：如变量名、数组名等</li>
-<li>常数：如整型、布尔型、文字型等</li>
-<li>运算符：如+ - / *</li>
-<li>界符：如逗号、分号、括号等</li>
-</ol>
-<h2 id="3-2-确定有限自动机DFA"><a href="#3-2-确定有限自动机DFA" class="headerlink" title="3.2 确定有限自动机DFA"></a>3.2 确定有限自动机DFA</h2><p>一个确定有限自动机(DFA) M是一个五元式<br>$$<br>M=(S, \Sigma, \delta, s0,F)<br>$$</p>
-<h2 id="3-3-非确定有限自动机NFA"><a href="#3-3-非确定有限自动机NFA" class="headerlink" title="3.3 非确定有限自动机NFA"></a>3.3 非确定有限自动机NFA</h2><h2 id="3-4-※NFA和DFA的三个区别"><a href="#3-4-※NFA和DFA的三个区别" class="headerlink" title="3.4 ※NFA和DFA的三个区别"></a>3.4 ※NFA和DFA的三个区别</h2><ol>
-<li>NFA的初态不唯一，DFA的初态唯一。NFA有一个非空初态集，其初态可以是其中任意一个元素</li>
-<li>NFA从一个状态转移到另一个状态接受的是一个字符串且允许接受空字符，DFA则接受的是一个字符且不接受空字符</li>
-<li>NFA对于单个字符有多种可能的转换，DFA只有一种可能</li>
-</ol>
-<h1 id="第4章-语法分析-自上而下分析"><a href="#第4章-语法分析-自上而下分析" class="headerlink" title="第4章 语法分析 - 自上而下分析"></a>第4章 语法分析 - 自上而下分析</h1><h2 id="4-1-LL-1-文法的含义"><a href="#4-1-LL-1-文法的含义" class="headerlink" title="4.1 LL(1)文法的含义"></a>4.1 LL(1)文法的含义</h2><p>第一个L表示从左到右扫描输入串，第二个L表示最左推导，1表示分析时每一步只向前看1个符号。</p>
-<h2 id="4-2-左递归的消除"><a href="#4-2-左递归的消除" class="headerlink" title="4.2 左递归的消除"></a>4.2 左递归的消除</h2><p>含有左递归的产生式：<br>$$<br>P \rightarrow P\alpha | \beta<br>$$<br>消除左递归：<br>$$<br>P \rightarrow \beta P’ \<br>P’ \rightarrow \alpha P’ | \epsilon<br>$$</p>
-<h2 id="4-3-回溯的消除-提取公因子"><a href="#4-3-回溯的消除-提取公因子" class="headerlink" title="4.3 回溯的消除(提取公因子)"></a>4.3 回溯的消除(提取公因子)</h2><h2 id="4-4-※LL-1-的分析条件"><a href="#4-4-※LL-1-的分析条件" class="headerlink" title="4.4 ※LL(1)的分析条件"></a>4.4 ※LL(1)的分析条件</h2><ol>
-<li><p>文法不含左递归</p>
-</li>
-<li><p>对于文法中每一个非终结符A的各个产生式的候选首符集两两不相交。即</p>
-<p>$$<br>A \rightarrow \alpha_1 |\alpha_2 |……\alpha_n<br>$$<br>则</p>
-<p>$$<br>FIRST(\alpha_i) \cap FIRST(\alpha_j) = \emptyset (i\neq j)<br>$$</p>
-</li>
-<li></li>
-</ol>
-<p>$$<br>FIRST(A) \cap FOLLOW(A) = \emptyset<br>$$</p>
-<h2 id="4-5-FIRST集的求法"><a href="#4-5-FIRST集的求法" class="headerlink" title="4.5 FIRST集的求法"></a>4.5 FIRST集的求法</h2><p>对于一个非终结符A:</p>
-<p>若有A→a……, a∈VT（终结符），则a包含于first(A)；</p>
-<p>若有A→B……, B属于VN（非终结符），则first(B)包含于first(A)；</p>
-<p>若有A→ε，则ε包含于first(A);</p>
-<p>若A→Y1Y2Y3…Yn，且Y1Y2…Yi =&gt;* ε，若Yi =&gt;* ε，则first(Yj)的并集 (j=1,2,…,i)都含于first(A)；若Yi不能经过0步或多步推导出ε，则first(Yj) (j=1,2,…,i)的并集，再去除所有的ε后的集合含于first(A)；</p>
-<p>反复运用上述规则指导first(A)不再扩大。</p>
-<h2 id="4-6-FOLLOW集的求法"><a href="#4-6-FOLLOW集的求法" class="headerlink" title="4.6 FOLLOW集的求法"></a>4.6 FOLLOW集的求法</h2><h1 id="第5章-词法分析-自下而上分析"><a href="#第5章-词法分析-自下而上分析" class="headerlink" title="第5章 词法分析 - 自下而上分析"></a>第5章 词法分析 - 自下而上分析</h1><h2 id="5-1-语法分析的方法"><a href="#5-1-语法分析的方法" class="headerlink" title="5.1 语法分析的方法"></a>5.1 语法分析的方法</h2><ul>
-<li>自上而下分析法，基本思想是从文法的开始符号出发，反复使用各种产生式， 寻找 “ 匹配 “ 的推导。预测分析程序是非递归实现的，直观、简单。</li>
-<li>自下而上分析法，基本思想是从输入串开始，逐步进行归约，直到文法的开始符号。<strong>归约</strong>是指根据文法的产生式规则，把产生式的右部替换成左部符号。</li>
-</ul>
-<p>采用“移进－归约”思想进行自下而上分析。用一个寄存符号的<strong>栈</strong>，把输入符号一个 一个地移进到栈里，当栈顶<strong>形成某个产生式的候选式</strong>时，即把栈顶的这一部分<strong>归约为该产生式的左部符号</strong>。</p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/5-1.png"></p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/5-2.png"></p>
-<h2 id="5-2-短语、直接短语、句柄"><a href="#5-2-短语、直接短语、句柄" class="headerlink" title="5.2 短语、直接短语、句柄"></a>5.2 短语、直接短语、句柄</h2><p><strong>短语</strong>：所有非叶子节点所在子树的叶子节点的组合（不能重复，但内容可重复）</p>
-<p><strong>直接短语</strong>：只有一层子树的叶子节点</p>
-<p><strong>句柄</strong>：一个句型的最左直接短语</p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/5-3.png">、、</p>
-<h2 id="5-3-规范归约"><a href="#5-3-规范归约" class="headerlink" title="5.3  规范归约"></a>5.3  规范归约</h2><p>定义：假定α是文法 G 的一个句子，我们 称序列 αn, α n-1, … , α0 是α的一个规范归约，如果此序列满足：</p>
-<ol>
-<li>αn = α</li>
-<li>α0为文法的开始符号，即α0 =S </li>
-<li>对任何 i ， 0 &lt;= i &lt;= n ， α i-1 是从 αi 经把 句柄替换成为相应产生式左部符号而得到的</li>
-</ol>
-<ul>
-<li><strong>最右推导</strong>是<strong>规范推导</strong>，最右推导的逆过程是最左归约（规范归约）</li>
-<li>由规范推导推出的句型称为规范句型</li>
-<li>规范归约的关键问题是寻找句柄</li>
-</ul>
-<h2 id="5-4-※LR分析法"><a href="#5-4-※LR分析法" class="headerlink" title="5.4 ※LR分析法"></a>5.4 ※LR分析法</h2><p><strong>LR分析法</strong>：L表示从左到右扫描输入串，R表示构造一个最右推导的逆过程（规范归约）。</p>
-<p><strong>LR分析法的项目</strong>：</p>
-<ol>
-<li>归约项目：<strong>A→a·</strong></li>
-<li>接受项目：<strong>S→a·</strong>（开始文法的归约项目，只有一个该项目）</li>
-<li>移进项目：A→a·cB  （活前缀后面是非终结符）</li>
-<li>待约项目：A→a·B （活前缀后面是非终结符）</li>
-</ol>
-<p><strong>LR分析器的模型</strong>：</p>
-<p>LR分析器的核心是一张分析表。表由两部分组成，一是“ACTION”表，另一是“GOTO”表。ACTION[s, a]规定了当状态s面临输入符号a时应采取什么动作，GOTO[s, X]规定了状态s面对文法符号X（终结符或非终结符）时下一状态是什么。</p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/5-4.png"></p>
-<p><strong>每一项ACTION[s, a]规定的动作为以下四个之一</strong>：</p>
-<ol>
-<li><strong>移进</strong>，把(s, a)的下一状态s’和输入符号a推进栈，下一输入符号变成现行输入符号</li>
-<li><strong>归约</strong>，用某一产生式进行归约，去除句柄长度个栈顶，将下一状态s’和归约的非终结符A推进栈，不改变现行输入符号</li>
-<li><strong>接受</strong>，宣布分析成功，停止分析器工作</li>
-<li><strong>报错</strong>，发现源程序含有错误，调用出错处理程序</li>
-</ol>
-<h2 id="5-5-LR0文法"><a href="#5-5-LR0文法" class="headerlink" title="5.5 LR0文法"></a>5.5 LR0文法</h2><p><strong>LR0文法的判定</strong>：不存在冲突项目（移进-归约冲突、归约-归约冲突）</p>
-<h2 id="5-6-SLR1文法"><a href="#5-6-SLR1文法" class="headerlink" title="5.6 SLR1文法"></a>5.6 SLR1文法</h2><p><strong>SLR(1)文法的判定</strong>:SLR文法不存在归约-归约冲突，有可能存在移进-归约冲突。</p>
-<p>对于移进-归约冲突，涉及到的两个非终结符A和B，需满足follow(A)∩follow(B)=空集。</p>
-<p>当遇到归约时，先看输入字符a是否在待归约非终结符T的follow(T)中，如果在才进行归约，不在则不归约。</p>
-<p>当遇移进-归约冲突时，先求待归约的非终结符T的follow(T)，遇到Follow(T)中的元素才归约，遇到待移进字符则移进，空白则报错。</p>
-<h2 id="5-7-LR1文法"><a href="#5-7-LR1文法" class="headerlink" title="5.7 LR1文法"></a>5.7 LR1文法</h2><p>构表步骤：拓广文法——构建带向前搜索符的项目规范集，如果存在冲突，若向前搜索符相交为空则是LR1文法</p>
-<h2 id="5-8-LALR文法"><a href="#5-8-LALR文法" class="headerlink" title="5.8 LALR文法"></a>5.8 LALR文法</h2><p>在LR1文法的基础上，合并同心集后无归约-归约冲突</p>
-<h1 id="第6章-属性文法和语法制导翻译"><a href="#第6章-属性文法和语法制导翻译" class="headerlink" title="第6章 属性文法和语法制导翻译"></a>第6章 属性文法和语法制导翻译</h1><h2 id="6-1-属性文法"><a href="#6-1-属性文法" class="headerlink" title="6.1 属性文法"></a>6.1 属性文法</h2><h2 id="6-1-1-属性文法"><a href="#6-1-1-属性文法" class="headerlink" title="6.1.1 属性文法"></a>6.1.1 属性文法</h2><p><strong>属性文法的概念：</strong>属性文法也叫属性翻译文法。它是在上下文无关文法的基础上，为每个文法符号（非终结符或终结符）配备若干相关的“值”（称为属性）。</p>
-<ul>
-<li>属性代表与文法符号相关信息，例如它的类型、值、代码序列、符号表等内容。</li>
-<li>属性可以进行计算和传递</li>
-</ul>
-<p><strong>语义规则的概念：</strong>对于文法的每个产生式都配备了一组属性的计算规则</p>
-<p><strong>属性的分类： ** <strong>综合属性和继承属性</strong>。综合属性用于</strong>“自下而上”<strong>传递信息，而继承属性用于</strong>“自上而下”**传递信息。</p>
-<p><strong>说明:</strong></p>
-<ul>
-<li><strong>终结符</strong>只有<strong>综合属性</strong>，由词法分析器提供</li>
-<li>非终结符既可以有综合属性也可有继承属性，文法开始符合的所有继承属性作为属性计算前的初始值</li>
-<li>出现在产生式<strong>右边的继承属性</strong>和出现在产生式<strong>左边的综合属性</strong>都必须提供一个计算规则。属性计算规则中只能使用相应产生式中的文法符号的属性</li>
-<li>出现在产生式<strong>左边的继承属性</strong>和出现在产生式<strong>右边的综合属性</strong>不由所给产生式的属性计算规则计算，由其它产生式的属性规则计算</li>
-</ul>
-<h2 id="6-1-2-综合属性"><a href="#6-1-2-综合属性" class="headerlink" title="6.1.2 综合属性"></a>6.1.2 <strong>综合属性</strong></h2><ul>
-<li>在语法树中，一个结点的综合属性的值<strong>由其子结点的属性值确定</strong></li>
-<li>使用<strong>自底向上</strong>的方法在每一个结点处使用语义规则计算综合属性的值</li>
-<li>仅仅使用综合属性的属性文法称<strong>S-属性文法</strong></li>
-</ul>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/6-1.png"></p>
-<h2 id="6-1-3-继承属性"><a href="#6-1-3-继承属性" class="headerlink" title="6.1.3 继承属性"></a>6.1.3 <strong>继承属性</strong></h2><p>一个结点的继承属性<strong>由此结点的父结点和/或兄弟结点的某些属性</strong>确定。用继承属性来表示程序设计语言结构中的<strong>上下文依赖关系很方便</strong>。</p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/6-2.png"></p>
-<h2 id="6-2-S-属性文法"><a href="#6-2-S-属性文法" class="headerlink" title="6.2 S-属性文法"></a>6.2 S-属性文法</h2><p>S- 属性文法：<strong>只含有综合属性</strong> </p>
-<ul>
-<li>综合属性可以在分析输入符号串的同时由自下而上的分析器来计算 </li>
-<li>分析器可以保存与栈中文法符号有关的综合属性值，每当进行归约时，新的属性值就由栈中正在归约的产生式右边符号的属性值来计算</li>
-<li>在分析栈中使用一个附加的域来存放综合属性值 </li>
-</ul>
-<h2 id="6-3-L-属性文法"><a href="#6-3-L-属性文法" class="headerlink" title="6.3 L-属性文法"></a>6.3 L-属性文法</h2><p><strong>L-属性文法定义：</strong></p>
-<p>如果对于每个产生式 A→X1X2…Xn ，其每个语义规则中的每个属性是<strong>综合属性</strong>或者是 <strong>Xj (1&lt;=j&lt;=n)</strong> 的一个<strong>继承属性</strong>且这个继承属性<strong>仅依赖于</strong>：</p>
-<p> (1) 产生式中 Xj 左边符号 X1 ， X2 ，…， Xj-1 的属性（<strong>不允许依赖右边的条件</strong>）</p>
-<p> (2) A 的继承属性</p>
-<p>该属性文法称为 L-属性文法</p>
-<p><strong>S-属性文法一定是 L-属性文法</strong></p>
-<h1 id="第7章-语义分析和中间代码生成"><a href="#第7章-语义分析和中间代码生成" class="headerlink" title="第7章 语义分析和中间代码生成"></a>第7章 语义分析和中间代码生成</h1><h2 id="7-1-逆波兰式（后缀式）"><a href="#7-1-逆波兰式（后缀式）" class="headerlink" title="7.1 逆波兰式（后缀式）"></a>7.1 逆波兰式（后缀式）</h2><p>把操作数写在前面，把算符写在后面。例如a+b写成ab+</p>
-<p>一个表达式E的后缀形式可以如下定义:</p>
-<ol>
-<li>如果E是一个变量或常量,则E的后缀式是E自身。</li>
-<li>如果E是E1 op E2形式的表达式，则E的后缀式为E1’E2’op，这里E1’和E2’分别为E1和E2的后缀式。</li>
-<li>如果E是(E)形式的表达式，则E的后缀式就是E的后缀式。</li>
-</ol>
-<p><strong>求逆波兰式方法</strong>：</p>
-<ul>
-<li>① 遇到字母直接写到答案中</li>
-<li>② 遇到符号则进栈</li>
-<li>③ 遇到成对括号立即出栈</li>
-<li>④ 新入栈的符号优先级必须大于（相等也不行）原栈顶的符号，否则要先出栈再加入</li>
-</ul>
-<h2 id="7-2-三地址代码"><a href="#7-2-三地址代码" class="headerlink" title="7.2 三地址代码"></a>7.2 三地址代码</h2><p>三地址代码是由下面一般形式的语句构成的序列:<br>$$<br>x,:= y,op,z<br>$$<br>其中x、y、z为名字、常数或编译时产生的临时变量；op代表运算符号如定点运算符、浮点运算符、逻辑运算符等等。每个语句的右边<strong>只能有一个运算符</strong>。</p>
-<p>三地址语句可看成中间代码的一种抽象形式。 编译程序中,三地址代码语句的具体实现可以用记录表示，记录中包含表示运算符和操作数的域。通常有三种表示方法:四元式、三元式、间接三元式。</p>
-<p><strong>四元式</strong>:</p>
-<p>一个四元式是一个带有四个域的记录结构。<br>$$<br>op1, arg1, arg2, result<br>$$<br>运算符，操作数1，操作数2，临时变量（中间结果）</p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/7-3.png"></p>
-<p><strong>三元式</strong>：</p>
-<p>为了避免把临时变量填入符号表，可以通过计算这个临时变量的值的语句的位置来引用这个临时变量。<br>$$<br>op1, arg1, arg2<br>$$<br><img src="/myblog/2023/06/15/CompilationPrinciple_note/7-1.png"></p>
-<p><strong>间接三元式</strong>：</p>
-<p><img src="/myblog/2023/06/15/CompilationPrinciple_note/7-2.png"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/myblog/2023/06/15/CompilationPrinciple_note/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
